@@ -1,0 +1,8 @@
+tensorflow==1.6.0
+keras==2.1.6
+scikit-learn
+theano
+pandas
+numpy
+h5py
+matplotlib
