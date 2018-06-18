@@ -25,7 +25,7 @@ output_folder = '/output/'
 seed = 7
 np.random.seed(seed)
 
-epochs = 5
+epochs = 30
 
 num_classes = 10
 
