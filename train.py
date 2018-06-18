@@ -26,7 +26,7 @@ output_folder = '/output/'
 seed = 7
 np.random.seed(seed)
 
-epochs = 10
+epochs = 20
 
 num_classes = 10
 
@@ -52,7 +52,7 @@ def train():
     global data_folder
     global output_folder
 
-    trainer = ConvTrainerSimpler()
+    trainer = ConvTrainer()
 
     #load data
     train_images = mnist.train_images()

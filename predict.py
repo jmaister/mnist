@@ -13,8 +13,8 @@ import os
 import cv2
 
 
-X = np.empty((6, 28, 28))
-for i in range(0,6):
+X = np.empty((10, 28, 28))
+for i in range(0,10):
     print(i)
     input_image = cv2.imread("./data/test-"+ str(i) +".png", cv2.IMREAD_GRAYSCALE)
     resized_image = cv2.resize(input_image, (28, 28))
