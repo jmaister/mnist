@@ -15,6 +15,7 @@ from keras.optimizers import *
 from keras.regularizers import l2
 
 from ConvTrainer import ConvTrainer
+from ConvTrainerSimpler import ConvTrainerSimpler
 
 import mnist
 
@@ -25,7 +26,7 @@ output_folder = '/output/'
 seed = 7
 np.random.seed(seed)
 
-epochs = 30
+epochs = 10
 
 num_classes = 10
 
@@ -51,7 +52,7 @@ def train():
     global data_folder
     global output_folder
 
-    trainer = ConvTrainer()
+    trainer = ConvTrainerSimpler()
 
     #load data
     train_images = mnist.train_images()
