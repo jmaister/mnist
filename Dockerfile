@@ -19,9 +19,9 @@ RUN apt-get install nano -y
 WORKDIR /root
 
 ADD requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt -v
 
-RUN pip install mnist
+RUN python -c "import mnist; mnist.train_images()"
 
 CMD bash
 
