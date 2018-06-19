@@ -31,7 +31,7 @@ def main():
     print("Loaded model from disk")
     
     print('Enabling camera...')
-    cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(-1)
     print('Camera enabled:', cap)
 
     while True:
