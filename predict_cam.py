@@ -48,10 +48,16 @@ def main():
             num = np.argmax(prediction)
             print('prediction', num)
 
+            cv2.putText(img = img, text = str(num), org = (100, 100),
+                fontFace = cv2.FONT_HERSHEY_DUPLEX, fontScale = 2, thickness = 3,
+                color = (0, 255, 0))
+            cv2.putText(img = bw_img, text = str(num), org = (100, 100),
+                fontFace = cv2.FONT_HERSHEY_DUPLEX, fontScale = 2, thickness = 3,
+                color = (0, 255, 0))
             cv2.imshow("camera", img)
             cv2.imshow("b/w", bw_img)
 
-        key = cv2.waitKey(500)
+        key = cv2.waitKey(50)
         if key == 27:
             break
 
