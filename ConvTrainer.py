@@ -14,7 +14,7 @@ class ConvTrainer:
         self.input_shape = input_shape
 
     def get_name(self):
-        return 'conv1d_model'
+        return 'convolutional mnist'
     
     def prepare_data(self, X, Y):
         return X, Y
@@ -22,12 +22,12 @@ class ConvTrainer:
     def create_model(self):
         model = Sequential()
 
-        model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu', input_shape=self.input_shape))
-        model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu'))
+        model.add(Conv2D(32, (3, 3), strides=2, padding='same', activation='relu', input_shape=self.input_shape))
+        model.add(Conv2D(32, (3, 3), strides=2, padding='same', activation='relu'))
         model.add(MaxPooling2D(pool_size=(2, 2)))
-        #model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu'))
+        #model.add(Conv2D(32, (3, 3), strides=2, padding='same', activation='relu'))
         #model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu'))
+        model.add(Conv2D(32, (3, 3), strides=2, padding='same', activation='relu'))
 
         # Back to NN
         model.add(Flatten())
