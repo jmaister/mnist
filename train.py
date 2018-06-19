@@ -9,6 +9,7 @@ import numpy as np
 from sklearn.preprocessing import *
 
 import keras
+from keras import backend as K
 from keras.models import *
 from keras.layers import *
 from keras.optimizers import *
@@ -29,6 +30,9 @@ np.random.seed(seed)
 epochs = 20
 
 num_classes = 10
+img_rows = 28
+img_cols = 28
+input_shape = (28, 28)
 
 def main():
     global data_folder
@@ -52,8 +56,6 @@ def train():
     global data_folder
     global output_folder
 
-    trainer = ConvTrainer()
-
     #load data
     train_images = mnist.train_images()
     train_labels = mnist.train_labels()
@@ -67,6 +69,20 @@ def train():
     X_test = test_images
     Y_test = keras.utils.to_categorical(test_labels, num_classes=num_classes)
 
+    print('Image data format', K.image_data_format())
+
+    if K.image_data_format() == 'channels_first':
+        X = X.reshape(X.shape[0], 1, img_rows, img_cols)
+        X_test = test_images.reshape(X_test.shape[0], 1, img_rows, img_cols)
+        input_shape = (1, img_rows, img_cols)
+    else:
+        X = X.reshape(X.shape[0], img_rows, img_cols, 1)
+        X_test = X_test.reshape(X_test.shape[0], img_rows, img_cols, 1)
+        input_shape = (img_rows, img_cols, 1)
+
+    trainer = ConvTrainer(input_shape)
+
+
     # X, Y = trainer.prepare_data(X, Y)
     print('X shape', X.shape)
     print('Y shape', Y.shape)
@@ -74,7 +90,7 @@ def train():
     model = trainer.create_model()
     model.summary()
 
-    model.fit(X, Y, validation_data=(X_test, Y_test), shuffle=True, epochs=epochs, batch_size=1000)
+    model.fit(X, Y, validation_data=(X_test, Y_test), shuffle=True, epochs=epochs, batch_size=500)
     print('* Done training')
 
     # serialize model to JSON

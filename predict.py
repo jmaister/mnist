@@ -21,10 +21,10 @@ for i in range(0,10):
     grey_values = 255 - resized_image
     X[i] = grey_values
 
-print('X', X.shape)
-
 #reshape
-#X = np.expand_dims(X, axis=2)
+print('X', X.shape)
+X = X.reshape(X.shape[0], X.shape[1], X.shape[2], 1)
+print('X', X.shape)
 
 # load json and create model
 json_file = open('./output/mnist_model.json', 'r')

@@ -10,8 +10,8 @@ from keras.regularizers import l2
 
 class ConvTrainer:
 
-    def __init__(self):
-        pass
+    def __init__(self, input_shape):
+        self.input_shape = input_shape
 
     def get_name(self):
         return 'conv1d_model'
@@ -22,10 +22,12 @@ class ConvTrainer:
     def create_model(self):
         model = Sequential()
 
-        model.add(Conv1D(32, 3, strides=1, padding='same', activation='relu', input_shape=(28, 28)))
-        model.add(Conv1D(32, 3, strides=1, padding='same', activation='relu'))
-        model.add(MaxPooling1D(pool_size=(2)))
-        model.add(Conv1D(32, 3, strides=1, padding='same', activation='relu'))
+        model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu', input_shape=self.input_shape))
+        model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu'))
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+        #model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu'))
+        #model.add(MaxPooling2D(pool_size=(2, 2)))
+        model.add(Conv2D(32, (3, 3), strides=1, padding='same', activation='relu'))
 
         # Back to NN
         model.add(Flatten())
